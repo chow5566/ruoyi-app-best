@@ -7,6 +7,7 @@ import path from 'node:path';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, path.resolve(process.cwd(), 'env'));
   return {
+    base: '/ruoyi-app-best/', // 部署路径
     envDir: './env', // 自定义env目录
     plugins: createVitePlugins(),
     css: {
