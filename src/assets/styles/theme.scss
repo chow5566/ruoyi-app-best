@@ -1,0 +1,19 @@
+/* wot内置的主题色、辅助色 */
+/* 有些未定义默认变量，需要在使用时定义(当前已在 src/store/modules/theme.js 中定义) */
+/* 参考：node_modules/wot-design-uni/components/common/abstracts/variable.scss */
+$theme-color-name: 'theme', 'warning', 'danger', 'purple', 'yellow', 'blue', 'info';
+
+/* 遍历$theme-color-name，生成对应的颜色变量 */
+/* 比如：.theme-color { color: var(--wot-color-theme); } */
+@each $name in $theme-color-name {
+  .#{$name}-color {
+    color: var(--wot-color-#{$name});
+  }
+  .#{$name}-bg-color {
+    background-color: var(--wot-color-#{$name});
+  }
+}
+
+.primary-color {
+  color: var(--wot-color-theme);
+}

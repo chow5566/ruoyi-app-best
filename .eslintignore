@@ -1,0 +1,4 @@
+node_modules
+src/uni_modules/
+auto-imports.d.ts
+/dist/
