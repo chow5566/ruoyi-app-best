@@ -41,7 +41,7 @@ jobs:
         run: pnpm install # 或 yarn install，根据你的偏好选择
 
       - name: Generate Static Site
-        run: build:h5 # 运行自定义的脚本，生成静态站点
+        run: pnpm run build:h5 # 运行自定义的脚本，生成静态站点
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
