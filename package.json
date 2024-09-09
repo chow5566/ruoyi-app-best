@@ -97,7 +97,7 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722002",
     "@eslint/js": "^9.9.0",
     "@uni-helper/vite-plugin-uni-tailwind": "^0.15.0",
-    "@uni-ku/root": "^0.3.0",
+    "@uni-ku/root": "^0.3.1",
     "@vue/runtime-core": "^3.4.37",
     "autoprefixer": "^10.4.20",
     "eslint": "~9.9.0",

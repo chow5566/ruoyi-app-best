@@ -2,7 +2,7 @@ import uni from '@dcloudio/vite-plugin-uni';
 import uniTailwind from '@uni-helper/vite-plugin-uni-tailwind';
 import createAutoImport from './auto-import';
 import createSetupExtend from './setup-extend';
-import UniKuRoot from './ku-root/index.mjs';
+import UniKuRoot from '@uni-ku/root';
 import miniProgramAutomator from './mini-program-automator';
 
 export default function createVitePlugins() {

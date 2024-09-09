@@ -5,7 +5,7 @@
   >
     <!-- 添加根组件 -->
     <KuRootView />
-    <!-- 全局添加toast组件2 -->
+    <!-- 全局添加toast组件 -->
     <wd-toast />
     <!-- 全局添加message-box组件 -->
     <wd-message-box></wd-message-box>
