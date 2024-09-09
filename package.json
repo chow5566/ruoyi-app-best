@@ -1,22 +1,26 @@
 {
   "name": "ruoyi-app-best",
   "version": "1.0.0",
-  "type": "commonjs",
+  "type": "module",
   "description": "ruoyi-app-best - 最好的 ruoyi-uniapp 开发模板",
   "author": {
-    "name": "Ethan Joe",
+    "name": "Chow5566",
     "zhName": "周大锤",
     "email": "767656961@qq.com",
     "github": "https://github.com/chow5566",
     "gitee": "https://gitee.com/chow5566"
   },
   "license": "MIT",
-  "repository": "https://github.com/codercup/unibest",
-  "repository-gitee": "https://gitee.com/codercup/unibest",
+  "repository": "https://github.com/codercup/ruoyi-app-best",
   "bugs": {
-    "url": "https://github.com/codercup/unibest/issues"
+    "url": "https://github.com/codercup/ruoyi-app-best/issues"
   },
-  "homepage": "https://codercup.github.io/unibest/",
+  "homepage": "https://codercup.github.io/ruoyi-app-best/",
+  "keywords": [
+    "Uniapp",
+    "Vue",
+    "Vite"
+  ],
   "engines": {
     "node": ">=18",
     "pnpm": ">=7.30"
