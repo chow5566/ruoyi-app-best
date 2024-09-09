@@ -1,7 +1,7 @@
 {
   "name": "ruoyi-app-best",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "ruoyi-app-best - 最好的 ruoyi-uniapp 开发模板",
   "author": {
     "name": "Chow5566",
