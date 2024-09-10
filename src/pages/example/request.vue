@@ -12,7 +12,6 @@
 
 <script setup>
 import { getInfo } from '../../api/login';
-import { getBaseUrl } from '../../utils/request';
 
 const userInfo = ref(null);
 const loading = ref(false);
@@ -23,12 +22,6 @@ const getUserInfo = () => {
   getInfo()
     .then((res) => {
       userInfo.value = res.user;
-    })
-    .catch((err) => {
-      uni.showModal({
-        title: '提示',
-        content: JSON.stringify(err)
-      });
     })
     .finally(() => {
       loading.value = false;

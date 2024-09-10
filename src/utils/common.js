@@ -17,11 +17,14 @@ export const message = {
    */
   confirm: (content, title = '提示', options = {}) => {
     return new Promise((resolve, reject) => {
-      uni.showModal({
+      const mergedOptions = {
         title: title || '提示',
         content: content || '确认执行该操作吗？',
         showCancel: true,
-        ..._options(options),
+        ..._options(options)
+      };
+      uni.showModal({
+        ...mergedOptions,
         success: (res) => {
           if (res.confirm) {
             resolve();
@@ -43,7 +46,6 @@ export const message = {
    * @returns {Promise<*>}
    */
   alert: function (content, title = '提示', options = {}) {
-    options = _options(options);
     return this.confirm(content, title, {
       confirmText: '我知道了',
       ...options,
