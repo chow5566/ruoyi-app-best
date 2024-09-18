@@ -1,7 +1,9 @@
 import route from '../utils/route';
 import { message } from '@/utils/common';
 import * as dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn'; // 导入本地化语言
+import 'dayjs/locale/zh-cn';
+import { isHasPermission } from '../utils/permissions/hasPermissions';
+import { isHasRole } from '../utils/permissions/hasRole'; // 导入本地化语言
 
 dayjs.locale('zh-cn'); // 使用本地化语言
 
@@ -12,7 +14,9 @@ dayjs.locale('zh-cn'); // 使用本地化语言
 const $zx = {
   route,
   message,
-  moment: dayjs.default
+  moment: dayjs.default,
+  isHasPermission,
+  isHasRole
 };
 
 export default {

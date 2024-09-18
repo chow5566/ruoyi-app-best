@@ -1,6 +1,6 @@
 export {};
-
 declare module 'vue' {
+  // @ts-ignore
   type Hooks = App.AppInstance & Page.PageInstance;
   interface ComponentCustomOptions extends Hooks {}
 }
@@ -23,6 +23,8 @@ declare namespace UniNamespace {
         toast(message: string);
       };
       moment(options?: any): any;
+      isHasPermission(permission: Array<string>): boolean;
+      isHasRole(permission: Array<string>): boolean;
     };
   }
 }

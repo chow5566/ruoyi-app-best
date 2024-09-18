@@ -4,6 +4,7 @@ import createAutoImport from './auto-import';
 import createSetupExtend from './setup-extend';
 import UniKuRoot from '@uni-ku/root';
 import miniProgramAutomator from './mini-program-automator';
+import vitePluginUniappPerms from './vite-plugin-uniapp-perms';
 
 export default function createVitePlugins() {
   const vitePlugins = [
@@ -11,6 +12,7 @@ export default function createVitePlugins() {
     UniKuRoot({
       enabledGlobalRef: true
     }),
+    vitePluginUniappPerms(),
     uni(),
     // 引入uni-tailwind插件
     uniTailwind(),

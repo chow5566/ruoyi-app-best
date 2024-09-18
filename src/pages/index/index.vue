@@ -2,14 +2,14 @@
   <view class="content">
     <view class="bg-white px-[16px] py-[20px]">
       <view class="primary-color text-lg mb-[10px]">Ruoyi App Best</view>
-      <view class="text-gray-500 text-sm"
+      <view class="text-gray-500 text-sm" v-if="1" z-perms="['aaaaaaaa']"
         >Ruoyi App Best 是最好的 Ruoyi 系统移动端 Uniapp 开发框架，由 uniapp +
         Vue3 + Vite4 + TailwindCSS + uni插件 +
         wot-ui构建，集成了多种工具和技术，使用了最新的前端技术栈，无需依靠
         HBuilderX，通过命令行方式即可运行 web、小程序 和 App</view
       >
     </view>
-    <view>{{ $zx.moment().format('YYYY-MM-DD HH:mm:ss') }}</view>
+    <view>{{ $zx.moment().format('YYYY-MM-DD HH:mm:ss') }}123</view>
     <view>{{ $zx.moment().format('dddd, MMMM Do YYYY, h:mm:ss a') }}</view>
     <view class="mt-5 px-[16px]">
       <view

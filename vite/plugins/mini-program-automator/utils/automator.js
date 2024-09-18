@@ -20,6 +20,7 @@ export const startAutomator = async (config) => {
     console.log(
       '\x1b[43m%s\x1b[0m',
       '微信开发者工具启动失败，请确保在.env 文件中配置了正确的微信开发者工具路径、项目路径。\n' +
+        '如果都没问题，请尝试再次运行命令。\n' +
         '错误详情：' +
         error
     );

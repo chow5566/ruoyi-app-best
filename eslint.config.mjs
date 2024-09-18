@@ -1,9 +1,8 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import pluginVue from 'eslint-plugin-vue';
-import eslintConfigPrettier from "eslint-config-prettier";
+import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-
 
 export default [
   { files: ['**/*.{js,mjs,cjs,vue,ts,tsx}'] },
@@ -20,7 +19,7 @@ export default [
         UniHelper: true,
         Page: true,
         App: true,
-        NodeJS: true,
+        NodeJS: true
       }
     }
   },
@@ -51,7 +50,7 @@ export default [
       'no-param-reassign': 'off',
       // 避免 `eslint` 对于 `typescript` 函数重载的误报
       'no-redeclare': 'off',
-      'vue/no-use-v-if-with-v-for': 'off',
-    },
+      'vue/no-use-v-if-with-v-for': 'off'
+    }
   }
 ];
