@@ -1,64 +1,70 @@
 import { createFilter } from 'vite';
-import { MagicString, parse } from '@vue/compiler-sfc';
+import { MagicString } from '@vue/compiler-sfc';
 
-export default function transformDirectivePlugin(options = {}) {
-  const directivePermissionName = 'z-perms'; // 定义指令名称
-  // 创建文件过滤器
-  const filter = createFilter(
-    options.include || ['src/**/*.vue'],
-    options.exclude || [/node_modules/, /uni_modules/]
-  );
+export default function zPermsPlugin(options = {}) {
+  const filter = createFilter(options.include, options.exclude);
 
   return {
-    name: 'vite-plugin-transform-directives',
+    name: 'vite-plugin-z-perms',
 
-    async transform(code, id) {
-      // 过滤掉非.vue 文件
-      if (!filter(id)) return;
+    transform(code, id) {
+      // 仅处理 .vue 文件
+      if (!filter(id) || !id.endsWith('.vue')) {
+        return null;
+      }
 
-      const ms = new MagicString(code); // 创建 MagicString 实例
-      const msStr = ms.toString(); // 获取 MagicString 字符串
-      // 从 MagicString 中检查模板内容是否存在
-      const templateMatch = msStr.match(/<template>([\s\S]*?)<\/template>/);
-      if (!templateMatch) return; // 如果没有找到模板内容，直接返回
+      // 没有template标签，则不处理
+      if (!code.includes('<template>')) {
+        return null;
+      }
 
-      // 定义用于匹配 权限数组 的正则表达式
-      const directiveRegex = new RegExp(
-        `${directivePermissionName}="(.*?)"`,
-        'g'
-      );
-      const ifRegex = /v-if="(.*?)"/g; // 定义用于匹配 v-if 的正则表达式
-
+      const magicString = new MagicString(code);
+      const regex = /<([a-zA-Z-]+)([^>]*)\s*z-perms="([^"]*)"/g;
       let match;
-      while ((match = directiveRegex.exec(msStr)) !== null) {
-        const permissionList = match[1]; // 获取权限数组
-        const directiveStart = match.index; // 获取 权限标识符 的开始位置
-        const directiveEnd = directiveRegex.lastIndex; // 获取 权限标识符 的结束位置
 
-        // 获取当前元素的 v-if 条件
-        ifRegex.lastIndex = 0; // 重置 ifRegex 的 lastIndex
-        const vIfMatch = ifRegex.exec(msStr);
+      while ((match = regex.exec(code)) !== null) {
+        const fullMatch = match[0]; // 完整的标签
+        const tagName = match[1]; // 标签名
+        const attributes = match[2]; // 标签属性
+        const zPermsValue = match[3]; // z-perms 属性值
 
-        const vIfCondition = vIfMatch ? vIfMatch[1] : 'true'; // 如果找到 v-if 条件，使用它，否则默认为 true
-        const vIfStart = vIfMatch ? vIfMatch.index : -1; // v-if 条件开始位置
-        const vIfEnd = vIfMatch ? vIfStart + vIfMatch[0].length : -1; // v-if 条件结束位置
+        // 查找 v-if 属性
+        const vIfRegex = /v-if="([^"]*)"/;
+        const hasVIf = vIfRegex.test(attributes);
+        let newAttributes;
 
-        // 合并权限条件与 v-if 条件
-        const combinedCondition = `$zx.isHasPermission(${permissionList}) && (${vIfCondition})`;
-
-        // 移除原先的 v-if （如果存在）
-        if (vIfStart !== -1) {
-          ms.remove(vIfStart, vIfEnd);
+        if (hasVIf) {
+          // 合并 z-perms 和 v-if
+          newAttributes = attributes.replace(
+            vIfRegex,
+            (vIfMatch, vIfCondition) => {
+              return `v-if="${vIfCondition} && $zx.isHasPermission(${zPermsValue})"`;
+            }
+          );
+        } else {
+          // 转换 z-perms 为 v-if
+          newAttributes = attributes.trim()
+            ? attributes + `v-if="$zx.isHasPermission(${zPermsValue})"`
+            : ` v-if="$zx.isHasPermission(${zPermsValue})"`;
         }
 
-        // 更新 MagicString 对象，将新的 v-if 插入
-        ms.update(directiveStart, directiveEnd, `v-if="${combinedCondition}"`);
+        // 替换标签内的内容
+        const updatedTag = `<${tagName}${newAttributes}`;
+        magicString.overwrite(
+          match.index,
+          match.index + fullMatch.length,
+          updatedTag
+        );
       }
-      // 返回处理后的代码
-      return {
-        code: ms.toString(),
-        map: ms.generateMap({ hires: true }) // 生成源映射
-      };
+
+      // 如果没有任何改变，则返回 null
+      if (magicString.hasChanged()) {
+        return {
+          code: magicString.toString(),
+          map: magicString.generateMap({ hires: true }) // 生成 source map
+        };
+      }
+      return null;
     }
   };
 }

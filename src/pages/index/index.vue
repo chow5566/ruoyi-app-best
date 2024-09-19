@@ -9,9 +9,11 @@
         HBuilderX，通过命令行方式即可运行 web、小程序 和 App</view
       >
     </view>
-    <view>{{ $zx.moment().format('YYYY-MM-DD HH:mm:ss') }}123</view>
-    <view>{{ $zx.moment().format('dddd, MMMM Do YYYY, h:mm:ss a') }}</view>
-    <view class="mt-5 px-[16px]">
+    <view v-if="3">{{ $zx.moment().format('YYYY-MM-DD HH:mm:ss') }}123</view>
+    <view z-perms="['ccccc']">{{
+      $zx.moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
+    }}</view>
+    <view class="mt-5 px-[16px]" v-if="2" z-perms="['bbbbbbbb']">
       <view
         class="flex bg-white py-5 px-3 rounded-[8px] items-center mb-[10px]"
         hover-class="bg-gray-100"

@@ -8,11 +8,11 @@ import vitePluginUniappPerms from './vite-plugin-uniapp-perms';
 
 export default function createVitePlugins() {
   const vitePlugins = [
+    vitePluginUniappPerms(),
     // 若存在改变 pages.json 的插件，请将 UniKuRoot 放置其后
     UniKuRoot({
       enabledGlobalRef: true
     }),
-    vitePluginUniappPerms(),
     uni(),
     // 引入uni-tailwind插件
     uniTailwind(),
