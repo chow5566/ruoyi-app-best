@@ -13,11 +13,6 @@ export default function zPermsPlugin(options = {}) {
         return null;
       }
 
-      // 没有template标签，则不处理
-      if (!code.includes('<template>')) {
-        return null;
-      }
-
       const magicString = new MagicString(code);
       const regex = /<([a-zA-Z-]+)([^>]*)\s*z-perms="([^"]*)"/g;
       let match;
@@ -59,6 +54,7 @@ export default function zPermsPlugin(options = {}) {
 
       // 如果没有任何改变，则返回 null
       if (magicString.hasChanged()) {
+        console.log(magicString.toString());
         return {
           code: magicString.toString(),
           map: magicString.generateMap({ hires: true }) // 生成 source map
