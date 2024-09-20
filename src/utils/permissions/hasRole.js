@@ -6,6 +6,7 @@ import { useUserStore } from '../../store/modules/user';
  * @returns {boolean}
  */
 export const isHasRole = (value) => {
+  console.log('value', value);
   // 角色为空，则默认无角色
   if (!value || !Array.isArray(value)) {
     return false;

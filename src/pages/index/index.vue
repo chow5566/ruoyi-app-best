@@ -9,12 +9,26 @@
         HBuilderX，通过命令行方式即可运行 web、小程序 和 App</view
       >
     </view>
-    <view z-perms="['ccc']" class="px-[16px] py-[20px]" v-if="123"
+    <image
+      z-perms="['aaa']"
+      src="https://img.yzcdn.cn/public_files/2021/08/17/f7a7d9d5c7d5d5.png"
+      v-if="123"
+      mode="widthFix"
+    />
+    <view
+      z-perms="['ccc']"
+      z-roles="['admin1']"
+      class="px-[16px] py-[20px]"
+      v-if="123"
       >{{ $zx.moment().format('YYYY-MM-DD HH:mm:ss') }}123</view
     >
-    <view v-if="123" z-perms="['dssd']" class="px-[16px] py-[20px]">{{
-      $zx.moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
-    }}</view>
+    <view
+      v-if="123"
+      z-perms="['dssd']"
+      z-roles="['admin1']"
+      class="px-[16px] py-[20px]"
+      >{{ $zx.moment().format('dddd, MMMM Do YYYY, h:mm:ss a') }}</view
+    >
     <view class="mt-5 px-[16px]">
       <view
         class="flex bg-white py-5 px-3 rounded-[8px] items-center mb-[10px]"
