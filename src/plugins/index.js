@@ -3,7 +3,7 @@ import { message } from '@/utils/common';
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { isHasPermission } from '../utils/permissions/hasPermissions';
-import { isHasRole } from '../utils/permissions/hasRole'; // 导入本地化语言
+import { isHasRole } from '../utils/permissions/hasRole';
 
 dayjs.locale('zh-cn'); // 使用本地化语言
 
@@ -11,7 +11,7 @@ dayjs.locale('zh-cn'); // 使用本地化语言
  * @description 插件对象
  * @type {{route: ((function({}=, {}=): Promise<void>)|*)}}
  */
-const $zx = {
+const zx = {
   route,
   message,
   moment: dayjs.default,
@@ -22,8 +22,8 @@ const $zx = {
 export default {
   install: (app, options) => {
     // 将$zx对象分别挂载到uni及Vue实例上
-    uni.$zx = $zx;
-    app.config.globalProperties.$zx = $zx;
+    uni.$zx = zx;
+    app.config.globalProperties.$zx = zx;
     // 挂载分页配置
     uni.$zp = {
       config: {
