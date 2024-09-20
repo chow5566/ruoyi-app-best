@@ -114,7 +114,6 @@ export default function vitePluginUniappPerms(options = {}) {
       MS.replace(MS.toString(), newRolesCode);
       // 如果没有任何改变，则返回 null
       if (MS.hasChanged()) {
-        console.log(MS.toString());
         return {
           code: MS.toString(),
           map: MS.generateMap({ hires: true }) // 生成 source map
