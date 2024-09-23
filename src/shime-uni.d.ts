@@ -1,4 +1,5 @@
 export {};
+
 declare module 'vue' {
   // @ts-ignore
   type Hooks = App.AppInstance & Page.PageInstance;
@@ -19,7 +20,7 @@ declare namespace UniNamespace {
           title?: string,
           options?: object
         ): Promise<void>;
-        alert(content?: string, title?: string, options?: object): Promis<any>;
+        alert(content?: string, title?: string, options?: object): Promise<any>;
         toast(message: string);
       };
       moment(options?: any): any;

@@ -85,6 +85,12 @@ const transformCode = (type, code) => {
   return MS.toString();
 };
 
+/**
+ * vite 插件
+ * @description 处理 uniapp 权限、角色属性，添加权限/角色检查
+ * @param options
+ * @returns {{transform(*, *): (null|{code: *, map: *}), name: string}|{code: string, map: *}|null}
+ */
 export default function vitePluginUniappPerms(options = {}) {
   // 过滤器，只处理指定目录下的文件
   const filter = createFilter(

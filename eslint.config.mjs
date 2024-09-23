@@ -11,6 +11,7 @@ export default [
       globals: {
         ...globals.browser,
         $t: true,
+        $zx: true,
         uni: true,
         UniApp: true,
         wx: true,
